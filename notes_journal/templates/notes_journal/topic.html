@@ -1,0 +1,23 @@
+{% extends 'notes_journal/base.html' %}
+
+{% block content %}
+
+  <p>Темы: {{ topic.text }}</p>
+
+  <p>Записи:</p>
+  <p>
+    <a href="{% url 'notes_journal:new_entry' topic.id %}">Добавить новую запись</a>
+  </p>
+  <ul>
+    {% for entry in entries %}
+      <li>
+        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+        <p>{{ entry.text|linebreaks }}</p>
+      </li>
+    {% empty %}
+      <li>Здесь пока нет ни одной записи.</li>
+    {% endfor %}
+  </ul>
+  
+
+{% endblock content %}

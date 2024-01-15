@@ -1,5 +1,18 @@
 <p>
   <a href="{% url 'notes_journal:index' %}">Журнал для записей</a> -
-  <a href="{% url 'notes_journal:topics' %}">Темы</a>
+  <a href="{% url 'notes_journal:topics' %}">Темы</a> - 
+  {% if user.is_authenticated %}
+    Привет, {{ user.username }}.
+  {% else %}
+    <a href="{% url 'accounts:login' %}">Авторизоваться</a>
+  {% endif %}
 </p>
 {% block content %}{% endblock content %}
+
+{% if user.is_authenticated %}
+  <hr />
+  <form action="{% url 'accounts:logout' %}" method='post'>
+    {% csrf_token %}
+    <button name="submit">Выйти</button>
+  </form>
+{% endif %}

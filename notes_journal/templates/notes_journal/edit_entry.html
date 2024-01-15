@@ -1,0 +1,15 @@
+{% extends 'notes_journal/base.html' %}
+
+{% block content %}
+
+  <p><a href="{% url 'notes_journal:topic' topic.id %}">{{ topic }}</a></p>
+
+  <p>Изменить запись:</p>
+
+  <form action="{% url 'notes_journal:edit_entry' entry.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button name="submit">Сохранить изменения</button>
+  </form>
+
+{% endblock content %}

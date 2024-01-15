@@ -13,6 +13,9 @@
       <li>
         <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
         <p>{{ entry.text|linebreaks }}</p>
+        <p>
+          <a href="{% url 'notes_journal:edit_entry' entry.id %}">Изменить запись</a>
+        </p>
       </li>
     {% empty %}
       <li>Здесь пока нет ни одной записи.</li>

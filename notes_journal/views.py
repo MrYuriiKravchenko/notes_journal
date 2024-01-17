@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
@@ -8,6 +9,7 @@ def index(request):
     return render(request, 'notes_journal/index.html')
 
 
+@login_required
 def topics(request):
     # Показать все темы
     topics = Topic.objects.order_by('date_added')
@@ -15,6 +17,7 @@ def topics(request):
     return render(request, 'notes_journal/topics.html', context)
 
 
+@login_required
 def topic(request, topic_id):
     # Выводит одну тему и все ее записи
     topic = Topic.objects.get(id=topic_id)
@@ -23,6 +26,7 @@ def topic(request, topic_id):
     return render(request, 'notes_journal/topic.html', context)
 
 
+@login_required
 def new_topic(request):
     if request.method != 'POST':
         form = TopicForm()
@@ -36,6 +40,7 @@ def new_topic(request):
     return render(request, 'notes_journal/new_topic.html', context)
 
 
+@login_required
 def new_entry(request, topic_id):
     # Добавляет новую запись по конкретной теме
     topic = Topic.objects.get(id=topic_id)
@@ -54,6 +59,7 @@ def new_entry(request, topic_id):
     return render(request, 'notes_journal/new_entry.html', context)
 
 
+@login_required
 def edit_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic

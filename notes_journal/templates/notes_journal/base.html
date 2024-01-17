@@ -4,6 +4,7 @@
   {% if user.is_authenticated %}
     Привет, {{ user.username }}.
   {% else %}
+    <a href="{% url 'accounts:register' %}">Регистрация</a> - 
     <a href="{% url 'accounts:login' %}">Авторизоваться</a>
   {% endif %}
 </p>

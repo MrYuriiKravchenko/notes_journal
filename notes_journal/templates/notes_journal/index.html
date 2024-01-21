@@ -1,5 +1,14 @@
 {% extends 'notes_journal/base.html' %}
 
-{% block content %}
-  <p>Журнал для записей позволяет создавать темы и делать записи в них</p>
-{% endblock content %}
+{% block page_header %}
+  <div class="p-3 mb-4 bg-light border rounded-3">
+    <div class="container-fluid py-4">
+      <h1 class="display-3">Ведите свои записи</h1>
+
+      <p class="lead">Создайте свой собственный журнал c тематическими записями или заметками. 
+      Создавайте всякий раз темы интересующие вас и прикрепляйте к ним записи.</p>
+      <a class="btn btn-primary btn-lg mt-1"
+        href="{% url 'accounts:register' %}">Регистр &raquo;</a>
+    </div>
+  </div>
+{% endblock page_header %}

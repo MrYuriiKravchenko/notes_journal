@@ -1,12 +1,16 @@
 {% extends 'notes_journal/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+  <h2>Зарегистрируйтесь</h2>
+{% endblock page_header %}
 
 {% block content %}
 
   <form action="{% url 'accounts:register' %}" method='post'>
     {% csrf_token %}
-    {{ form.as_div }}
-
-    <button name="submit">Регистрация</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Регистрация" %}
   </form>
 
 {% endblock content %}

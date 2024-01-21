@@ -1,26 +1,28 @@
 {% extends 'notes_journal/base.html' %}
 
+{% block page_header %}
+  <h1>{{ topic.text }}</h1>
+{% endblock page_header %}
+
 {% block content %}
-
-  <p>Темы: {{ topic.text }}</p>
-
-  <p>Записи:</p>
   <p>
     <a href="{% url 'notes_journal:new_entry' topic.id %}">Добавить новую запись</a>
   </p>
-  <ul>
-    {% for entry in entries %}
-      <li>
-        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-        <p>{{ entry.text|linebreaks }}</p>
-        <p>
-          <a href="{% url 'notes_journal:edit_entry' entry.id %}">Изменить запись</a>
-        </p>
-      </li>
-    {% empty %}
-      <li>Здесь пока нет ни одной записи.</li>
-    {% endfor %}
-  </ul>
+
+  {% for entry in entries %}
+    <div class="card mb-3">
+      <!-- Заголовок карты с отметкой времени и ссылкой для редактирования -->
+      <h4 class="card-header">
+        {{ entry.date_added|date:'M d, Y H:i' }}
+        <small><a href="{% url 'notes_journal:edit_entry' entry.id %}">
+          редактировать запись</a></small>
+      </h4>
+      <!-- Тело карты с текстом ввода -->
+      <div class="card-body">{{ entry.text|linebreaks }}</div>
+    </div>
+  {% empty %}
+    <li>Здесь пока нет ни одной записи.</li>
+  {% endfor %}
   
 
 {% endblock content %}

@@ -9,11 +9,3 @@ _pet-project_
 
 Скриншот страницы с записями
 ![записи](entries.png)
-
-стек:
-* Python
-* Django
-* HTML
-* Bootstrap
-
-
